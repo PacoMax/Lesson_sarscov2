@@ -18,9 +18,10 @@ https://github.com/BenLangmead/bowtie2
 
 ## Datos requeridos
 Para la práctica llevaremos a cabo dos estrategias de ensamblado.
-Para ello necesitaremos descragar el genoma del virus SARS-CoV-2:
+Para ello necesitaremos descargar el #### genoma del virus SARS-CoV-2:
 Se encuentra en GenBank con el nombre de acceso: MT318827 (Pfefferle, S. et al., 2020). 
-Igualmente se puede utilizar algun otro genoma secuenciado completo.
+Igualmente se puede utilizar algún otro genoma secuenciado completo.
+
 
 
 Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). doi:10.1128/MRA.00520-20
