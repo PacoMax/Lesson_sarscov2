@@ -24,6 +24,14 @@ Para la práctica llevaremos necesitaremos descargar:
 #### Genoma del virus SARS-CoV-2:
 Se encuentra en GenBank con el nombre de acceso: MT318827 (Pfefferle, S. et al., 2020). 
 Igualmente se puede utilizar algún otro genoma secuenciado completo.
+Para descargar este genoma se puede hacer mediante el uso de la herramienta entrez.
+Para instalarla:
+
+  apt install ncbi-entrez-direct
+
+Una vez instalada, para descargar el genoma en formato fasta:
+
+  efetch -db nucleotide -id MT318827 -mode text -format fasta > SARS_CoV_2_genome.fasta
 
 #### Datos de secuenciación 
 Por otro lado, descargaremos reads procedentes de una secuenciación con el acceso PRJNA624231 (BioProject), SRR11517432 (SRA), y SAMN14572083 (BioSample) (Pfefferle, S. et al., 2020). Estos serán los que ensamblaremos.
@@ -51,7 +59,7 @@ Y luego visualizar los html generados.
 
 ## Parte 3
 ### Filtrado/limpieza de reads
-D
+
 
 
 
