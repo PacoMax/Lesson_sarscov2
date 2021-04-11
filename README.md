@@ -1,4 +1,4 @@
-# Lesson_sarscov2
+# Práctica SARS-CoV-2
 En este repositorio encontrarás las instrucciones para la práctica del genoma del virus SARS-CoV-2
 
 ## Programas requeridos:
