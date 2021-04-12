@@ -19,6 +19,8 @@ https://github.com/BenLangmead/bowtie2
 https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 ### Trimmomatic
 http://www.usadellab.org/cms/?page=trimmomatic
+Se puede instalar mediante conda:
+https://anaconda.org/bioconda/trimmomatic
 
 ## Datos requeridos
 Para la práctica llevaremos necesitaremos descargar:
@@ -57,12 +59,40 @@ Recuerden que podemos usar el ambiente gráfico de fastqc o con línea de comand
   fastqc reads/*
 
 para realizar todos los análisis.
-Y luego visualizar los html generados.
+Y luego visualizar los html generados, y de este modo decidir como filtraremos nuestros reads.
 
 ## Parte 3
 ### Filtrado/limpieza de reads
-trimmomatic PE RR11517432_1.fastq RR11517432_2.fastq LEADING:7 SLIDINGWINDOW:4:16 MINLEN:35 AVGQUAL:30
+Nos debemos asegurar que no haya secuencias de adaptadores y tengamos una calidad adecuada.
+Para limpiar usaremos trimmomatic:
 
+  trimmomatic PE -phred33 SRR11517432_1.fastq SRR11517432_2.fastq SR11517432_1_pf.fastq SR11517432_1_uf.fastq SR11517432_2_pf.fastq SR1151
+7432_2_uf.fastq LEADING:7 TRAILING:3 SLIDINGWINDOW:4:16 MINLEN:35 AVGQUAL:30
+
+Como se puede observar estamos quitando los primeros 7 nucleótidos del inicio de los reads,
+los últimos tres, y revisamos que la calidad de los reads sea mayor a 16 con ventanas de 4 nucleótidos,
+además sólo nos quedamos con los reads de longitud mayor a 35 tras el filtrado y que conserven una calidad media mayor a 30.
+
+Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
+
+  fastqc 
+
+## Parte 4
+### Mapeo de reads contra el genoma de referencia
+
+Tenemos datos de un metatranscriptoma del cual las secuencias polyA fueron eliminadas, sin embargo, el resto siguen estando presentes, es decir,
+todo el rna expresado por la comunidad bacteriana y todos los virus con genoma compuesto por RNA. Por ello, es necesario, para facilitar el ensamblado,
+obtener todos los posibles reads que probablemente son del virus SARS-CoV-2.
+
+Lo que haremos será mapear los reads al genoma que descargamos. Entonces utilizaremos la herramienta Bowtie 2
+Primero crearemos los índices con el comando:
+
+  bowtie2-build SARS_CoV_2_genome.fasta SARS_CoV_2_genome
+
+¿Por qué crear índices? La respuesta es simple, como se realizaran alineamientos se requerira mucha memoría, entonces los desarrolladores
+de Bowtie integraron el indexado Burrows-Wheeler que funciona para comprimir la información de las secuencias fasta.
+
+  
 
 
 Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). doi:10.1128/MRA.00520-20
