@@ -75,7 +75,8 @@ además sólo nos quedamos con los reads de longitud mayor a 35 tras el filtrado
 
 Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
 
-  fastqc 
+  fastqc SR11517432_1_pf.fastq
+  fastqc SR11517432_2_pf.fastq
 
 ## Parte 4
 ### Mapeo de reads contra el genoma de referencia
