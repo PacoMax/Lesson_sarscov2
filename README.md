@@ -17,6 +17,8 @@ Las instrucciones de instalación se encuentran aquí:
 https://github.com/BenLangmead/bowtie2
 ### FastQC
 https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+### Trimmomatic
+http://www.usadellab.org/cms/?page=trimmomatic
 
 ## Datos requeridos
 Para la práctica llevaremos necesitaremos descargar:
@@ -59,7 +61,7 @@ Y luego visualizar los html generados.
 
 ## Parte 3
 ### Filtrado/limpieza de reads
-
+trimmomatic PE RR11517432_1.fastq RR11517432_2.fastq LEADING:7 SLIDINGWINDOW:4:16 MINLEN:35 AVGQUAL:30
 
 
 
