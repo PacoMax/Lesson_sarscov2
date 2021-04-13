@@ -24,7 +24,7 @@ https://anaconda.org/bioconda/trimmomatic
 ### Samtools
 https://www.howtoinstall.me/ubuntu/18-04/samtools/
 ### n50 script
-conda install -y -c bioconda n50
+  *conda install -y -c bioconda n50
 
 ## Datos requeridos
 Para la práctica necesitaremos descargar:
@@ -35,19 +35,19 @@ Igualmente se puede utilizar algún otro genoma secuenciado completo.
 Para descargar este genoma se puede hacer mediante el uso de la herramienta entrez.
 Para instalarla:
 
-  apt install ncbi-entrez-direct
+  *apt install ncbi-entrez-direct
 
 Una vez instalada, para descargar el genoma en formato fasta:
 
-  efetch -db nucleotide -id MT318827 -mode text -format fasta > SARS_CoV_2_genome.fasta
+  *efetch -db nucleotide -id MT318827 -mode text -format fasta > SARS_CoV_2_genome.fasta
 
 #### Datos de secuenciación 
 Por otro lado, descargaremos reads procedentes de una secuenciación con el acceso PRJNA624231 (BioProject), SRR11517432 (SRA), y SAMN14572083 (BioSample) (Pfefferle, S. et al., 2020). Estos serán los que ensamblaremos.
 Para descargarlos se puede usar el SRA toolkit https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/:
 
-  prefetch SRR11517432
+  *prefetch SRR11517432
   
-  fastq-dump --outdir reads --skip-technical -I -W --split-files SRR11517432/SRR11517432.sra
+  *fastq-dump --outdir reads --skip-technical -I -W --split-files SRR11517432/SRR11517432.sra
 
 ## Parte 1
 ### ¿De dónde proceden los datos?
@@ -61,7 +61,7 @@ Como recordarán el primer paso es visualizar los reads y sus calidades.
 Para ello emplearemos la herramienta fastqc.
 Recuerden que podemos usar el ambiente gráfico de fastqc o con línea de comandos teclear:
   
-  fastqc reads/*
+  *fastqc reads/*
 
 para realizar todos los análisis.
 Y luego visualizar los html generados, y de este modo decidir como filtraremos nuestros reads.
@@ -71,7 +71,7 @@ Y luego visualizar los html generados, y de este modo decidir como filtraremos n
 Nos debemos asegurar que no haya secuencias de adaptadores y tengamos una calidad adecuada.
 Para limpiar usaremos trimmomatic:
 
-  trimmomatic PE -phred33 SRR11517432_1.fastq SRR11517432_2.fastq SR11517432_1_pf.fastq SR11517432_1_uf.fastq SR11517432_2_pf.fastq SR1151
+  *trimmomatic PE -phred33 SRR11517432_1.fastq SRR11517432_2.fastq SR11517432_1_pf.fastq SR11517432_1_uf.fastq SR11517432_2_pf.fastq SR1151
 7432_2_uf.fastq LEADING:7 TRAILING:3 SLIDINGWINDOW:4:16 MINLEN:35 AVGQUAL:30
 
 Como se puede observar estamos quitando los primeros 7 nucleótidos del inicio de los reads,
@@ -80,18 +80,18 @@ además sólo nos quedamos con los reads de longitud mayor a 35 tras el filtrado
 
 Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
 
-  fastqc SR11517432_1_pf.fastq
+  *fastqc SR11517432_1_pf.fastq
   
-  fastqc SR11517432_2_pf.fastq
+  *fastqc SR11517432_2_pf.fastq
   
 ¿Parece que las calidades mejoraron?
 ¿Cuántos reads se conservaron?
 
 Ahora cambiaremos los nombres de los headers para que sean los mismos de forward y reverse:
 
-  awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_1_pf.fastq > SR11517432_1_pf_c.fastq
+  *awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_1_pf.fastq > SR11517432_1_pf_c.fastq
   
-  awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_2_pf.fastq > SR11517432_2_pf_c.fastq
+  *awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_2_pf.fastq > SR11517432_2_pf_c.fastq
 
 
 ## Parte 4
@@ -104,18 +104,18 @@ obtener todos los posibles reads que probablemente son del virus SARS-CoV-2.
 Lo que haremos será mapear los reads al genoma que descargamos. Entonces utilizaremos la herramienta Bowtie 2
 Primero crearemos los índices con el comando:
 
-  bowtie2-build SARS_CoV_2_genome.fasta SARS_CoV_2_genome
+  *bowtie2-build SARS_CoV_2_genome.fasta SARS_CoV_2_genome
 
 ¿Por qué crear índices? La respuesta es simple, como se realizarán alineamientos se requerirá mucha memoria, entonces los desarrolladores
 de Bowtie integraron el indexado Burrows-Wheeler que funciona para comprimir la información de las secuencias fasta.
 
 Ya que se generaron los índices mapeamos nuestros reads filtrados:
 
-  bowtie2 -x ../SARS_CoV_2_genome -1 SR11517432_1_pf_c.fastq -2 SR11517432_2_pf_c.fastq -S SARS_mapping.sam
+  *bowtie2 -x ../SARS_CoV_2_genome -1 SR11517432_1_pf_c.fastq -2 SR11517432_2_pf_c.fastq -S SARS_mapping.sam
 
 Extraemos los reads mapeados mediante el uso de las herramientas samtools:
   
-  samtools view -b -F 4 SARS_mapping.sam > SARS_mapped.bam
+  *samtools view -b -F 4 SARS_mapping.sam > SARS_mapped.bam
 
 El formato sam contiene las secuencias, así como ciertas anotaciones llamadas banderas que corresponden a diferentes características de las secuencias.
 En este caso la bandera 4 describe si se alineó contra el genoma de referencia o no. Con "-F" señalamos que queremos los reads mapeados y con "-b" que queremos
@@ -123,17 +123,17 @@ un archivo de salida en formato bam, cuyo formato es una versión comprimida del
 
 Posteriormente ordenamos los reads:
 
-  samtools sort -n SARS_mapped.bam > SARS_mapped_sorted.bam
+  *samtools sort -n SARS_mapped.bam > SARS_mapped_sorted.bam
 
 Y con este comando pasamos a formato fastq los reads mapeados.
 
-  bamToFastq -i SARS_mapped.bam -fq SARS_1.fastq -fq2 SARS_2.fastq
+  *bamToFastq -i SARS_mapped.bam -fq SARS_1.fastq -fq2 SARS_2.fastq
   
 Finalmente analizamos con fastqc las secuencias:
 
-  fastqc SARS_1.fastq
+  *fastqc SARS_1.fastq
   
-  fastqc SARS_2.fastq
+  *fastqc SARS_2.fastq
   
 ¿De qué tamaño es el genoma del virus? 
 ¿Tendremos suficiente profundidad de secuenciación?
@@ -147,14 +147,14 @@ Este tiene algunas modificaciones que aprovecha el conocimiento sobre las estruc
 Para saber más detalles se sugiere consultar la publicación del software 
 El comando es el siguiente:
 
- coronaspades.py -1 SARS_1.fastq -2 SARS_2.fastq -o SARS_ensamble_spades
+ *coronaspades.py -1 SARS_1.fastq -2 SARS_2.fastq -o SARS_ensamble_spades
 
 ¿Cuántos contigs fueron generados?
 ¿De qué longitud cada uno?
 
 Comprueba esto con el comando:
 
-  n50 contigs.fasta
+  *n50 contigs.fasta
 
 Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). DOI: 10.1128/MRA.00520-20
 
