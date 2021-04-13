@@ -23,6 +23,8 @@ Se puede instalar mediante conda:
 https://anaconda.org/bioconda/trimmomatic
 ### Samtools
 https://www.howtoinstall.me/ubuntu/18-04/samtools/
+### n50 script
+conda install -y -c bioconda n50
 
 ## Datos requeridos
 Para la práctica necesitaremos descargar:
@@ -149,6 +151,10 @@ El comando es el siguiente:
 
 ¿Cuántos contigs fueron generados?
 ¿De qué longitud cada uno?
+
+Comprueba esto con el comando:
+
+  n50 contigs.fasta
 
 Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). DOI: 10.1128/MRA.00520-20
 
