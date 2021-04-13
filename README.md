@@ -44,6 +44,7 @@ Por otro lado, descargaremos reads procedentes de una secuenciación con el acce
 Para descargarlos se puede usar el SRA toolkit https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/:
 
   prefetch SRR11517432
+  
   fastq-dump --outdir reads --skip-technical -I -W --split-files SRR11517432/SRR11517432.sra
 
 ## Parte 1
@@ -78,6 +79,7 @@ además sólo nos quedamos con los reads de longitud mayor a 35 tras el filtrado
 Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
 
   fastqc SR11517432_1_pf.fastq
+  
   fastqc SR11517432_2_pf.fastq
   
 ¿Parece que las calidades mejoraron?
@@ -85,8 +87,9 @@ Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
 
 Ahora cambiaremos los nombres de los headers para que sean los mismos de forward y reverse:
 
-   awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_1_pf.fastq > SR11517432_1_pf_c.fastq
-   awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_2_pf.fastq > SR11517432_2_pf_c.fastq
+  awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_1_pf.fastq > SR11517432_1_pf_c.fastq
+  
+  awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_2_pf.fastq > SR11517432_2_pf_c.fastq
 
 
 ## Parte 4
@@ -127,6 +130,7 @@ Y con este comando pasamos a formato fastq los reads mapeados.
 Finalmente analizamos con fastqc las secuencias:
 
   fastqc SARS_1.fastq
+  
   fastqc SARS_2.fastq
   
 ¿De qué tamaño es el genoma del virus? 
