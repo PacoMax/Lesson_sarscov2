@@ -106,7 +106,7 @@ de Bowtie integraron el indexado Burrows-Wheeler que funciona para comprimir la 
 
 Ya que se generaron los índices mapeamos nuestros reads filtrados:
 
-  bowtie2 -x ../SARS_CoV_2_genome -1 SR11517432_1_pf.fastq -2 SR11517432_2_pf.fastq -S SARS_mapping.sam
+  bowtie2 -x ../SARS_CoV_2_genome -1 SR11517432_1_pf_c.fastq -2 SR11517432_2_pf_c.fastq -S SARS_mapping.sam
 
 Extraemos los reads mapeados mediante el uso de las herramientas samtools:
   
@@ -116,10 +116,14 @@ El formato sam contiene las secuencias, así como ciertas anotaciones llamadas b
 En este caso la bandera 4 describe si se alineó contra el genoma de referencia o no. Con "-F" señalamos que queremos los reads mapeados y con "-b" que queremos
 un archivo de salida en formato bam, cuyo formato es una versión comprimida del sam.
 
+Posteriormente ordenamos los reads:
+
+  samtools sort -n SARS_mapped.bam > SARS_mapped_sorted.bam
+
+Y con este comando pasamos a formato fastq los reads mapeados.
+
   bamToFastq -i SARS_mapped.bam -fq SARS_1.fastq -fq2 SARS_2.fastq
   
-Con este comando pasamos a formato fastq los reads mapeados.
-
 ## Parte 5
 ### Ensamblaje de novo
 
