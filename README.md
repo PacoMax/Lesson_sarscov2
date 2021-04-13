@@ -77,7 +77,12 @@ Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
 
   fastqc SR11517432_1_pf.fastq
   fastqc SR11517432_2_pf.fastq
+  
+Ahora cambiaremos el nombre de los headers para forward y reverse puedan conservar el mismo nombre:
 
+  awk '{print (NR%4 == 1) ? "@_" ++i : $0}' SR11517432_1_pf.fastq
+  awk '{print (NR%4 == 1) ? "@_" ++i : $0}' SR11517432_2_pf.fastq
+ 
 ## Parte 4
 ### Mapeo de reads contra el genoma de referencia
 
