@@ -124,6 +124,29 @@ Y con este comando pasamos a formato fastq los reads mapeados.
 
   bamToFastq -i SARS_mapped.bam -fq SARS_1.fastq -fq2 SARS_2.fastq
   
+Finalmente analizamos con fastqc las secuencias:
+
+  fastqc SARS_1.fastq
+  fastqc SARS_2.fastq
+  
+¿De qué tamaño es el genoma del virus? 
+¿Tendremos suficiente profundidad de secuenciación?
+
+
 ## Parte 5
 ### Ensamblaje de novo
+
+Existe en la actualidad un pipeline en específico de spades para ensamblar genomas virales.
+Este tiene algunas modificaciones que aprovecha el conocimiento sobre las estructuras del genoma viral para mejorar el ensamblaje.
+Para saber más detalles se sugiere consultar la publicación del software 
+El comando es el siguiente:
+
+ coronaspades.py -1 SARS_1.fastq -2 SARS_2.fastq -o SARS_ensamble_spades
+
+
+
+Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). DOI: 10.1128/MRA.00520-20
+
+Meleshko, D., & Korobeynikov, A. (2020). coronaSPAdes: from biosynthetic gene clusters to coronaviral assemblies. bioRxiv. DOI: 10.1101/2020.07.28.224584
+
 
