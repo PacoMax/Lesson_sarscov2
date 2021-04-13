@@ -143,7 +143,8 @@ El comando es el siguiente:
 
  coronaspades.py -1 SARS_1.fastq -2 SARS_2.fastq -o SARS_ensamble_spades
 
-
+¿Cuántos contigs fueron generados?
+¿De qué longitud cada uno?
 
 Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). DOI: 10.1128/MRA.00520-20
 
