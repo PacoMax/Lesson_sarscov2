@@ -21,6 +21,8 @@ https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 http://www.usadellab.org/cms/?page=trimmomatic
 Se puede instalar mediante conda:
 https://anaconda.org/bioconda/trimmomatic
+### Samtools
+https://www.howtoinstall.me/ubuntu/18-04/samtools/
 
 ## Datos requeridos
 Para la práctica llevaremos necesitaremos descargar:
@@ -45,7 +47,7 @@ Para descargarlos se puede usar el SRA toolkit https://www.ncbi.nlm.nih.gov/sra/
   fastq-dump --outdir reads --skip-technical -I -W --split-files SRR11517432/SRR11517432.sra
 
 ## Parte 1
-### ¿De donde proceden los datos?
+### ¿De dónde proceden los datos?
 Los datos provienen de una muestra de hisopado orofaríngeo de un paciente con COVID-19 que se encontraba en Hamburgo, al norte de Alemania.
 Se recomienda leer la publicación (Pfefferle, S. et al., 2020).
 Estos datos de RNAseq, se obtuvieron mediante el empleo de la plataforma Illumina NextSeq.
@@ -78,11 +80,15 @@ Al finalizar procedemos a visualizar los datos mediante el uso de fastqc
   fastqc SR11517432_1_pf.fastq
   fastqc SR11517432_2_pf.fastq
   
-Ahora cambiaremos el nombre de los headers para forward y reverse puedan conservar el mismo nombre:
+¿Parece que las calidades mejoraron?
+¿Cuántos reads se conservaron?
 
-  awk '{print (NR%4 == 1) ? "@_" ++i : $0}' SR11517432_1_pf.fastq
-  awk '{print (NR%4 == 1) ? "@_" ++i : $0}' SR11517432_2_pf.fastq
- 
+Ahora cambiaremos los nombres de los headers para que sean los mismos de forward y reverse:
+
+   awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_1_pf.fastq > SR11517432_1_pf_c.fastq
+   awk '{print (NR%4 == 1) ? "@" ++i : $0}' SR11517432_2_pf.fastq > SR11517432_2_pf_c.fastq
+
+
 ## Parte 4
 ### Mapeo de reads contra el genoma de referencia
 
@@ -95,10 +101,25 @@ Primero crearemos los índices con el comando:
 
   bowtie2-build SARS_CoV_2_genome.fasta SARS_CoV_2_genome
 
-¿Por qué crear índices? La respuesta es simple, como se realizaran alineamientos se requerira mucha memoría, entonces los desarrolladores
+¿Por qué crear índices? La respuesta es simple, como se realizarán alineamientos se requerirá mucha memoria, entonces los desarrolladores
 de Bowtie integraron el indexado Burrows-Wheeler que funciona para comprimir la información de las secuencias fasta.
 
+Ya que se generaron los índices mapeamos nuestros reads filtrados:
+
+  bowtie2 -x ../SARS_CoV_2_genome -1 SR11517432_1_pf.fastq -2 SR11517432_2_pf.fastq -S SARS_mapping.sam
+
+Extraemos los reads mapeados mediante el uso de las herramientas samtools:
   
+  samtools view -b -F 4 SARS_mapping.sam > SARS_mapped.bam
 
+El formato sam contiene las secuencias, así como ciertas anotaciones llamadas banderas que corresponden a diferentes características de las secuencias.
+En este caso la bandera 4 describe si se alineó contra el genoma de referencia o no. Con "-F" señalamos que queremos los reads mapeados y con "-b" que queremos
+un archivo de salida en formato bam, cuyo formato es una versión comprimida del sam.
 
-Pfefferle, S., Huang, J., Nörz, D., Indenbirken, D., Lütgehetmann, M., Oestereich, L., ... & Fischer, N. (2020). Complete genome sequence of a SARS-CoV-2 strain isolated in Northern Germany. Microbiology resource announcements, 9(23). doi:10.1128/MRA.00520-20
+  bamToFastq -i SARS_mapped.bam -fq SARS_1.fastq -fq2 SARS_2.fastq
+  
+Con este comando pasamos a formato fastq los reads mapeados.
+
+## Parte 5
+### Ensamblaje de novo
+
