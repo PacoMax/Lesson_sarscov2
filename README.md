@@ -24,7 +24,7 @@ https://anaconda.org/bioconda/trimmomatic
 ### Samtools
 https://www.howtoinstall.me/ubuntu/18-04/samtools/
 ### n50 script
-  *conda install -y -c bioconda n50
+  *conda install -y -c bioconda n50*
 
 ## Datos requeridos
 Para la práctica necesitaremos descargar:
