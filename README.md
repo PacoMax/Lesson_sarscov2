@@ -25,7 +25,7 @@ https://anaconda.org/bioconda/trimmomatic
 https://www.howtoinstall.me/ubuntu/18-04/samtools/
 
 ## Datos requeridos
-Para la práctica llevaremos necesitaremos descargar:
+Para la práctica necesitaremos descargar:
 
 #### Genoma del virus SARS-CoV-2:
 Se encuentra en GenBank con el nombre de acceso: MT318827 (Pfefferle, S. et al., 2020). 
