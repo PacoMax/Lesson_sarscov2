@@ -12,21 +12,35 @@ Esta práctica está diseñada para Linux o Mac.
 En caso de tener Windows 10 se puede optar por la instalación de la terminal Ubuntu 18.04.
 ### SPAdes 3.15.2
 Las instrucciones de instalación y requerimientos se encuentran aquí:
+
 https://github.com/ablab/spades
+
 También se puede instalar mediante conda:
+
 https://bioconda.github.io/recipes/spades/README.html
+
 Asegurarse de que la versión incluya coronaSPAdes
 ### Bowtie2
 Las instrucciones de instalación se encuentran aquí:
+
 https://github.com/BenLangmead/bowtie2
+
 ### FastQC
+
 https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
 ### Trimmomatic
+
 http://www.usadellab.org/cms/?page=trimmomatic
+
 Se puede instalar mediante conda:
+
 https://anaconda.org/bioconda/trimmomatic
+
 ### Samtools
+
 https://www.howtoinstall.me/ubuntu/18-04/samtools/
+
 ### n50 script
   *conda install -y -c bioconda n50*
 
