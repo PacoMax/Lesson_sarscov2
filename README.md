@@ -1,5 +1,9 @@
 # Práctica SARS-CoV-2
 En este repositorio encontrarás las instrucciones para la práctica del genoma del virus SARS-CoV-2
+Es necesario saber los comandos básicos de linux para llevarla a cabo. Sin embargo, si no sabes estos te comparto un link
+donde podrás aprenderlos, así como conocer más de linux:
+
+https://ubuntu.com/tutorials/command-line-for-beginners#1-overview
 
 ## Programas requeridos:
 
