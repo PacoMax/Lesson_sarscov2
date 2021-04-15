@@ -45,6 +45,12 @@ https://www.howtoinstall.me/ubuntu/18-04/samtools/
   *conda install -y -c bioconda n50*
 
 ## Datos requeridos
+Se recomienda crear una carpeta donde se realizará la práctica.
+
+Ejemplo:
+
+*mkdir practica_SARS_CoV_2*
+
 Para la práctica necesitaremos descargar:
 
 #### Genoma del virus SARS-CoV-2:
