@@ -10,6 +10,11 @@ https://ubuntu.com/tutorials/command-line-for-beginners#1-overview
 ### SO Ubuntu o Mac
 Esta práctica está diseñada para Linux o Mac. 
 En caso de tener Windows 10 se puede optar por la instalación de la terminal Ubuntu 18.04.
+Debido a un error que se ha presentado con la instalación es recomendable seguir estos pasos extra:
+
+https://answers.microsoft.com/en-us/insider/forum/all/how-to-enable-the-windows-subsystem-for-linux/16e8f2e8-4a6a-4325-a89a-fd28c7841775
+
+
 ### SPAdes 3.15.2
 Las instrucciones de instalación y requerimientos se encuentran aquí:
 
@@ -20,6 +25,19 @@ También se puede instalar mediante conda:
 https://bioconda.github.io/recipes/spades/README.html
 
 Asegurarse de que la versión incluya coronaSPAdes
+
+Para instalar mediante conda es necesario previamente intalar miniconda o conda, aquí una guía:
+
+https://varhowto.com/install-miniconda-ubuntu-20-04/
+
+Los comandos básicos a emplear son los siguientes:
+
+"wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+"bash Miniconda3-latest-Linux-x86_64.sh"
+"conda config --add channels defaults"
+"conda config --add channels bioconda"
+
+
 ### Bowtie2
 Las instrucciones de instalación se encuentran aquí:
 
