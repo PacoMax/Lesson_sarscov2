@@ -35,11 +35,19 @@ Para instalar mediante conda es necesario previamente intalar miniconda o conda,
 
 *wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh*
 
+Este comando es para descargar el instalador
+
  *bash Miniconda3-latest-Linux-x86_64.sh*
+ 
+ con este se corre el script de instalación
 
  *conda config --add channels defaults*
+ 
+ aquí se configura software default de conda
 
  *conda config --add channels bioconda*
+ 
+ y aquí software extra de bioconda
 
 
 ### Bowtie2
