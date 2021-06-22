@@ -26,19 +26,19 @@ https://bioconda.github.io/recipes/spades/README.html
 
 Asegurarse de que la versión incluya coronaSPAdes
 
-Para instalar mediante conda es necesario previamente intalar miniconda o conda, aquí una guía:
+Para instalar mediante conda es necesario previamente intalar miniconda o conda, aquí una guía sobre la instalación de miniconda:
 
-https://varhowto.com/install-miniconda-ubuntu-20-04/
+ https://varhowto.com/install-miniconda-ubuntu-20-04/
 
-Los comandos básicos a emplear son los siguientes:
+ Los comandos básicos a emplear son los siguientes:
 
 *wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh*
 
-*bash Miniconda3-latest-Linux-x86_64.sh*
+ *bash Miniconda3-latest-Linux-x86_64.sh*
 
-*conda config --add channels defaults*
+ *conda config --add channels defaults*
 
-*conda config --add channels bioconda*
+ *conda config --add channels bioconda*
 
 
 ### Bowtie2
