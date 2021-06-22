@@ -32,10 +32,13 @@ https://varhowto.com/install-miniconda-ubuntu-20-04/
 
 Los comandos básicos a emplear son los siguientes:
 
-"wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-"bash Miniconda3-latest-Linux-x86_64.sh"
-"conda config --add channels defaults"
-"conda config --add channels bioconda"
+*wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh*
+
+*bash Miniconda3-latest-Linux-x86_64.sh*
+
+*conda config --add channels defaults*
+
+*conda config --add channels bioconda*
 
 
 ### Bowtie2
