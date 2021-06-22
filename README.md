@@ -13,6 +13,7 @@ En caso de tener Windows 10 se puede optar por la instalación de la terminal Ub
 Debido a un error que se ha presentado con la instalación es recomendable seguir estos pasos extra:
 
 https://answers.microsoft.com/en-us/insider/forum/all/how-to-enable-the-windows-subsystem-for-linux/16e8f2e8-4a6a-4325-a89a-fd28c7841775
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
 
 ### SPAdes 3.15.2
